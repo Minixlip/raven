@@ -98,10 +98,10 @@ export default function NavbarMenu() {
         </div>
       )}
       <motion.div
-        initial={{ x: '100%' }}
-        animate={{ x: shoppingBagActive ? '0%' : '100%' }}
+        initial={{ x: '100%', display: 'none' }}
+        animate={{ x: shoppingBagActive ? '0%' : '100%', display: 'flex' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`fixed top-0 right-0 h-full w-[40%] bg-black border-2 border-neutral-500 shadow-lg z-50`}
+        className={`fixed top-0 right-0 h-full w-[40%] bg-black border-2 border-neutral-500 shadow-lg z-50 flex-col`}
         ref={bagRef}
       >
         <div className="p-4 flex justify-between items-center border-b border-neutral-500">
@@ -160,11 +160,6 @@ export default function NavbarMenu() {
           </div>
         </div>
       </motion.div>
-
-      {/* Background overlay when bag is open */}
-      {shoppingBagActive && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" />
-      )}
     </div>
   );
 }
