@@ -34,7 +34,7 @@ export default function Menu() {
   ];
 
   return (
-    <div>
+    <div className="border-r h-full flex items-center pr-4 border-r-neutral-500">
       <HiOutlineMenuAlt4
         className="cursor-pointer h-[28px] w-[28px]"
         onClick={() => setOpen((prev) => !prev)}
