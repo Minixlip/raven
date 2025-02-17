@@ -79,12 +79,16 @@ export default function NavbarMenu() {
       </div>
       {/* Search Bar */}
       {searchActive && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50"
+          onClick={() => setSearchActive(false)} // Clicking background closes it
+        >
           <div
             ref={searchRef}
             className="bg-black border border-white p-4 rounded-md shadow-lg w-1/3 flex items-center gap-2"
+            onClick={(e) => e.stopPropagation()} // Prevents click from closing immediately
           >
-            <PiMagnifyingGlass className="h-6 w-6" />
+            <PiMagnifyingGlass className="h-6 w-6 text-white" />
             <input
               type="text"
               placeholder="Search..."
