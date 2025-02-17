@@ -5,55 +5,21 @@ import { GiBirdClaw } from 'react-icons/gi';
 import { IoPerson } from 'react-icons/io5';
 import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
+import Menu from './Menu';
 
 export default function Navbar() {
   return (
-    <nav className="flex bg-black justify-between items-center border-t-[1px] border-b-[1px] border-t-gray-400 border-b-gray-500 ">
-      <div className="flex items-center justify-start gap-1 font-bold text-xl px-4 flex-1">
-        <span>Raven</span>
-        <GiBirdClaw />
-      </div>
-      <div className="flex ">
-        {/* Navigation buttons */}
-        <div className="flex justify-center border-l-2 border-l-gray-500 items-center font-semibold text-lg tracking-wider">
-          <div className="px-6">
-            <Link href={'/contact'}>Shop</Link>
-          </div>
-        </div>
-        <div className="flex justify-center border-l-2 border-l-gray-500 items-center font-semibold text-lg">
-          <div className="px-8">
-            <Link href={'/contact'}>About</Link>
-          </div>
-        </div>
-        <div className="flex justify-center border-l-2 border-l-gray-500 items-center font-semibold text-lg">
-          <div className="px-8">
-            <Link href={'/contact'}>Journal</Link>
-          </div>
-        </div>
-        <div className="flex justify-center border-l-2 border-l-gray-500 items-center font-semibold text-lg">
-          <div className="px-8">
-            <Link href={'/contact'}>Contact</Link>
-          </div>
-        </div>
-        {/* icon buttons */}
-        <button
-          onClick={() => alert('Searched!')}
-          className=" px-4 py-5 border-l-2 border-l-gray-500 bg-black hover:bg-slate-300 hover:bg-opacity-5 cursor-pointer flex justify-center items-center"
+    <nav className="h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 bg-black border-t-[1px] border-b-[1px] border-t-gray-400 border-b-gray-500 relative">
+      <div className="h-full flex items-center justify-between">
+        <Link
+          href={'/'}
+          className=" h-full flex items-center justify-start gap-1 font-bold text-2xl flex-1 tracking-widest"
         >
-          <FiSearch size={'16px'} />
-        </button>
-        <button
-          onClick={() => alert('Profile !')}
-          className=" px-4 py-5 border-l-2 border-l-gray-500 bg-black hover:bg-slate-300 hover:bg-opacity-5 cursor-pointer flex justify-center items-center"
-        >
-          <IoPerson size={'16px'} />
-        </button>
-        <button
-          onClick={() => alert('Shopping Bag!')}
-          className=" px-4 py-5 border-l-2 border-l-gray-500 bg-black hover:bg-slate-300 hover:bg-opacity-5 cursor-pointer flex justify-center items-center"
-        >
-          <FaShoppingBag size={'16px'} />
-        </button>
+          <span>Raven</span>
+          <GiBirdClaw />
+        </Link>
+        {/* MOBILE */}
+        <Menu />
       </div>
     </nav>
   );
