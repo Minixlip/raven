@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} font-sans antialiased`}>
-        <div className="sticky top-0 w-full">
+        <div className="sticky top-0 w-full z-10">
           <Navbar />
         </div>
         <div className="min-h-[100vh]">{children}</div>
