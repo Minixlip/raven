@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { HiOutlineMenuAlt4 } from 'react-icons/hi';
-import { easeInOut, motion, MotionConfig } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { FaChevronDown } from 'react-icons/fa';
 import Link from 'next/link';
 
