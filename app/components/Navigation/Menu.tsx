@@ -26,6 +26,13 @@ export default function Menu() {
     { href: '/', label: 'SALE' },
   ];
 
+  const shopCollections = [
+    { href: '/', label: 'ELEMENTS' },
+    { href: '/', label: 'MOTION' },
+    { href: '/', label: 'FREEDOM' },
+    { href: '/', label: 'ESSENTIALS' },
+  ];
+
   return (
     <div>
       <HiOutlineMenuAlt4
@@ -47,18 +54,34 @@ export default function Menu() {
             <hr className="w-full border-gray-500 my-4" />
 
             {openShop ? (
-              <div className="flex flex-col gap-4 mx-4">
-                <span className="text-neutral-500 text-base font-bold">
-                  CATEGORIES
-                </span>
-                {shopCategories.map((category, index) => (
-                  <div
-                    key={index}
-                    className="mt-2"
-                  >
-                    <Link href={category.href}>{category.label}</Link>
-                  </div>
-                ))}
+              <div>
+                <div className="flex flex-col gap-4 mx-4">
+                  <span className="text-neutral-500 text-base font-bold">
+                    CATEGORIES
+                  </span>
+                  {shopCategories.map((category, index) => (
+                    <div
+                      key={index}
+                      className="mt-2"
+                    >
+                      <Link href={category.href}>{category.label}</Link>
+                    </div>
+                  ))}
+                </div>
+                <hr className="w-full border-gray-500 my-6" />
+                <div className="flex flex-col gap-4 mx-4">
+                  <span className="text-neutral-500 text-base font-bold">
+                    COLLECTIONS
+                  </span>
+                  {shopCollections.map((collection, index) => (
+                    <div
+                      key={index}
+                      className="mt-2"
+                    >
+                      <Link href={collection.href}>{collection.label}</Link>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               <div>
