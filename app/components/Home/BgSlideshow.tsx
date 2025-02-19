@@ -64,7 +64,7 @@ export default function BgSlideshow() {
         }}
       />
       <div className="relative z-10 min-h-[95vh] flex justify-start items-end">
-        <div className="flex justify-between flex-1 mx-8 mb-12">
+        <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-0 justify-between flex-1 mx-8 mb-12">
           <div className="flex flex-col gap-4 text-wrap flex-shrink">
             <Link
               href="/"
