@@ -63,9 +63,9 @@ export default function BgSlideshow() {
           zIndex: -1,
         }}
       />
-      <div className="relative z-10 min-h-[95vh] flex justify-start items-end">
-        <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-0 justify-between flex-1 mx-8 mb-12">
-          <div className="flex flex-col gap-4 text-wrap flex-shrink">
+      <div className="relative z-10 md:min-h-[95vh] flex pt-10 md:pt-0 md:justify-start md:items-end items-center">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-0 justify-between flex-1 mx-8 md:mb-12 h-full">
+          <div className="flex flex-col gap-4 text-wrap flex-1 min-h-full ">
             <Link
               href="/"
               className="bg-black w-fit p-4 border border-neutral-500 font-bold text-2xl xl:text-4xl"
@@ -75,11 +75,11 @@ export default function BgSlideshow() {
             <span className="font-extrabold  text-2xl xl:text-4xl select-none">
               {slideshowImages[currentImageIndex].imageTitle}
             </span>
-            <p className="font-semibold text-white text-2xl xl:text-4xl w-[60%] xl:w-[80%] select-none">
+            <p className="font-semibold text-white text-xl md:text-2xl xl:text-4xl md:w-[60%] xl:w-[70%] select-none">
               {slideshowImages[currentImageIndex].imageDescription}
             </p>
           </div>
-          <div className="flex flex-col xl:mr-10 flex-wrap">
+          <div className="hidden md:flex flex-col xl:mr-10 lg:absolute lg:bottom-10 lg:right-0 flex-1">
             {slideshowImages.map((image, index) => (
               <motion.div
                 key={index}
@@ -95,7 +95,8 @@ export default function BgSlideshow() {
                 <Image
                   alt=""
                   src={image.image}
-                  width={200}
+                  width={300}
+                  height={300}
                   className="border border-neutral-500"
                 />
               </motion.div>
