@@ -55,7 +55,7 @@ export default function HomeCards() {
   ]);
 
   return (
-    <div className='flex flex-wrap gap-2 py-2'>
+    <div className="flex justify-center flex-wrap gap-2 px-2 py-2">
       <Card cardInfo={cardClothes[0]} />
       <Card cardInfo={cardClothes[1]} />
       <Card cardInfo={cardClothes[2]} />
