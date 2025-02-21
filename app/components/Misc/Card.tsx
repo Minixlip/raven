@@ -23,7 +23,7 @@ export default function Card(props) {
           height: '100%',
           zIndex: -1,
         }}
-        className="md:min-h-[500px] md:min-w-[500px] border-b-2 border-neutral-500"
+        className=" min-h-[300px] min-w-[100px] lg:min-h-[300px] lg:min-w-[300px] border-b-2 border-neutral-500"
       />
       <div className="flex flex-col p-4 gap-3">
         <span className="text-xl font-bold text-neutral-500">
