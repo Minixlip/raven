@@ -1,6 +1,6 @@
 import Card from '../Misc/Card';
 
-export default function HomeCards(props) {
+export default function HomeCards(props: any) {
   return (
     <div className="flex-1 flex flex-col mt-1 gap-1 ">
       <div className="flex flex-col items-center md:flex-row flex-1 gap-1">
