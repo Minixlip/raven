@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-export default function Card(props) {
+export default function Card(props: any) {
   const primaryPhotos = [props.cardInfo.image, props.cardInfo.secondImage];
 
   const [displayPhoto, setDisplayPhoto] = useState(primaryPhotos[0]);
