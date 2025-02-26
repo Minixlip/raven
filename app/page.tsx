@@ -9,6 +9,8 @@ import DisplayCollections from './components/Home/DisplayCollections';
 
 import { FaInstagramSquare } from 'react-icons/fa';
 import Link from 'next/link';
+import JournalDisplay from './components/Home/JournalDisplay';
+import JournalCardDisplay from './components/Home/JournalCardDisplay';
 
 export default function Home() {
   return (
@@ -19,7 +21,7 @@ export default function Home() {
       <DisplayClothes />
       <HomeNavigationCards />
       <DisplayCollections />
-      <div className="min-h-[30vh] flex flex-col px-8 text-wrap justify-center">
+      <div className="min-h-[30vh] hidden md:flex flex-col px-8 text-wrap justify-center">
         <span className="font-bold tracking-tight text-5xl">FOLLOW RAVEN</span>
         <span className="font-semibold tracking-tight text-neutral-500 text-3xl">
           WEAR IT YOUR WAY. TAG US ON INSTAGRAM FOR YOUR CHANCE TO BE FEATURED.
@@ -32,6 +34,9 @@ export default function Home() {
           />
         </Link>
       </div>
+      <hr className="hidden md:flex w-full py-10 border-neutral-500" />
+      <JournalDisplay />
+      <JournalCardDisplay />
     </main>
   );
 }
