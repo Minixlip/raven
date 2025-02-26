@@ -9,7 +9,7 @@ export default function DisplayCollections() {
   const [rightPreviewHover, setRightPreviewHover] = useState(false);
 
   return (
-    <div className="min-h-[90vh] flex flex-col md:flex-row md:gap-2 py-2">
+    <div className="min-h-[90vh] flex flex-col lg:flex-row md:gap-2 py-2">
       <div
         className="flex-1 border border-neutral-500 flex flex-col justify-end font-bold cursor-pointer"
         style={{

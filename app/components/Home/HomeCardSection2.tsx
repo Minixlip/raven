@@ -117,7 +117,7 @@ export default function HomeCardSection2() {
           backgroundPosition: 'top',
           y: isMobile ? 0 : smoothTranslateY, // Disable movement in mobile view
         }}
-        className="flex-1 min-h-[200px] h-[600px] flex flex-col justify-start border-2 border-neutral-500 mx-2 mt-2"
+        className="flex-1 min-h-[200px] h-[600px] flex flex-col justify-start border-2 border-neutral-500 mt-2"
       >
         <Link
           href={'/shop'}

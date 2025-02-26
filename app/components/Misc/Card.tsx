@@ -9,7 +9,7 @@ export default function Card(props: any) {
 
   return (
     <div
-      className="flex-1 flex flex-col border-2 border-neutral-500 w-fit cursor-pointer"
+      className="flex-1 flex flex-col border-2 border-neutral-500 cursor-pointer"
       onMouseEnter={() => setDisplayPhoto(primaryPhotos[1])}
       onMouseLeave={() => setDisplayPhoto(primaryPhotos[0])}
     >
@@ -23,13 +23,13 @@ export default function Card(props: any) {
           height: '100%',
           zIndex: -1,
         }}
-        className="min-h-[300px] min-w-[300px] sm:min-h-[300px] sm:min-w-[300px]  xl:min-h-[450px] xl:min-w-[450px] border-b-2 border-neutral-500"
+        className="min-h-[400px] border-b-2 border-neutral-500"
       />
       <div className="flex flex-col p-4 gap-3">
         <span className="text-xl font-bold text-neutral-500">
           {props.cardInfo.TypeOfClothing}
         </span>
-        <span className="text-xl font-bold">
+        <span className="text-xl font-bold text-wra">
           {props.cardInfo.NameOfClothing}
         </span>
         <span className="text-xl font-bold">${props.cardInfo.Price}</span>
