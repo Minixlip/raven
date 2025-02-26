@@ -62,7 +62,7 @@ export default function HomeCardSection2() {
       secondImage:
         'https://framerusercontent.com/images/CCsJVhIWqk5Kd4IoA0guLflP7hg.jpg',
       TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
+      NameOfClothing: 'ESSENTIAL TEE',
       Price: 145,
     },
     {
@@ -73,9 +73,9 @@ export default function HomeCardSection2() {
         'https://framerusercontent.com/images/eVYdtpXA14mNqOPaTCQwQHElY.jpg',
       secondImage:
         'https://framerusercontent.com/images/BaJUG2L7Z49UUdlS9eGXKsmXM1Q.jpg',
-      TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
-      Price: 145,
+      TypeOfClothing: 'OUTERWEAR',
+      NameOfClothing: 'MOTION TRACK JACKET',
+      Price: 165,
     },
     {
       New: true,
@@ -85,9 +85,9 @@ export default function HomeCardSection2() {
         'https://framerusercontent.com/images/P5z58RDJ0pbV2D7WkFImxVgs.jpg',
       secondImage:
         'https://framerusercontent.com/images/ixAEJVtgycAmvKdgNNXOKZa3Y0.jpg',
-      TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
-      Price: 145,
+      TypeOfClothing: 'OUTERWEAR',
+      NameOfClothing: 'ELEMENTS WEATHER JACKET',
+      Price: 185,
     },
     {
       New: true,
@@ -97,9 +97,9 @@ export default function HomeCardSection2() {
         'https://framerusercontent.com/images/aZ9zcbzKhpZu7InzdF7nT63ymJc.jpg',
       secondImage:
         'https://framerusercontent.com/images/ZSQvjNr4VOfw2bgQdjwy77ojoM.jpg',
-      TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
-      Price: 145,
+      TypeOfClothing: 'BOTTOMS',
+      NameOfClothing: 'MOTION TECH SHORTS',
+      Price: 125,
     },
   ]);
 

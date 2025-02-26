@@ -73,9 +73,9 @@ export default function HomeCardSection2() {
         'https://framerusercontent.com/images/TzE4HV2Rd2nSnBPovKnaeVJ4ig.jpg',
       secondImage:
         'https://framerusercontent.com/images/Go8FgbJq5k83GEHQpJxfiOfyU.jpg',
-      TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
-      Price: 145,
+      TypeOfClothing: 'OUTERWEAR',
+      NameOfClothing: 'FREEDOM OVERSIZED HOODIE',
+      Price: 165,
     },
     {
       New: true,
@@ -96,9 +96,9 @@ export default function HomeCardSection2() {
         'https://framerusercontent.com/images/WCPUxU8le7cGYEMic8GQuKrQTLI.jpg',
       secondImage:
         'https://framerusercontent.com/images/D9XYlok0cgs0AR1T9UYgXebum4.jpg',
-      TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
-      Price: 145,
+      TypeOfClothing: 'BOTTOMS',
+      NameOfClothing: 'FREEDOM TRACK PANTS',
+      Price: 195,
     },
   ]);
 
@@ -114,7 +114,7 @@ export default function HomeCardSection2() {
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'top',
-          y: isMobile ? 0 : smoothTranslateY, // Disable movement in mobile view
+          y: isMobile ? 0 : smoothTranslateY,
         }}
         className="flex-1 min-h-[200px] h-[600px] flex flex-col justify-start border-2 border-neutral-500 mx-2 mt-2"
       >
