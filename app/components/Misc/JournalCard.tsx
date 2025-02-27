@@ -8,7 +8,7 @@ export default function JournalCard(props: any) {
   const [previewHover, setPreviewHover] = useState(false);
   return (
     <div
-      className="flex-1 border border-neutral-500 flex flex-col"
+      className="flex-1 border border-neutral-500 flex flex-col cursor-pointer"
       onClick={() => (location.href = `/journal`)}
       onMouseEnter={() => setPreviewHover(true)}
       onMouseLeave={() => setPreviewHover(false)}
