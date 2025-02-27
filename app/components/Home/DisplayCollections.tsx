@@ -38,7 +38,7 @@ export default function DisplayCollections() {
             <BsArrowUpRight />
           </motion.div>
         </div>
-        <span className="mx-2 mb-10 text-3xl md:text-7xl tracking-wider">
+        <span className="mx-2 mb-10 text-3xl md:text-6xl tracking-wider">
           EXPLORE
           <br /> OUR <br /> COLLECTIONS
         </span>
@@ -71,7 +71,7 @@ export default function DisplayCollections() {
             <BsArrowUpRight />
           </motion.div>
         </div>
-        <span className="mx-2 mb-10 text-3xl md:text-7xl tracking-wider">
+        <span className="mx-2 mb-10  text-3xl md:text-6xl tracking-wider">
           BUILT
           <br /> FOR REAL <br /> PERFORMANCE
         </span>
