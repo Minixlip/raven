@@ -46,7 +46,7 @@ export default function DisplayClothes() {
               onClick={() => (location.href = '/about')}
               onMouseEnter={() => setLeftSmallPreview((prev) => !prev)}
               onMouseLeave={() => setLeftSmallPreview((prev) => !prev)}
-              className="absolute mt-4 border-2 border-neutral-500 bg-black p-4 w-[200px] cursor-pointer"
+              className="absolute mt-4 border-2 border-neutral-500 bg-black p-4 w-[200px] cursor-pointer  z-[50]"
             >
               <div
                 style={{
@@ -107,7 +107,7 @@ export default function DisplayClothes() {
               onClick={() => (location.href = '/about')}
               onMouseEnter={() => setRightSmallPreview((prev) => !prev)}
               onMouseLeave={() => setRightSmallPreview((prev) => !prev)}
-              className="absolute mt-4 border-2 border-neutral-500 bg-black p-4 w-[200px] cursor-pointer"
+              className="absolute mt-4 border-2 border-neutral-500 bg-black p-4 w-[200px] cursor-pointer z-[50]"
             >
               <div
                 style={{

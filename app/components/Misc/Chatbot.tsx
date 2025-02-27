@@ -25,7 +25,7 @@ export default function Chatbot() {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 flex flex-col items-end z-[999] ${
+      className={`fixed bottom-4 right-4 flex flex-col items-end z-[999] bg-black ${
         !open ? 'border border-red-500 rounded-full ' : ''
       }`}
     >
