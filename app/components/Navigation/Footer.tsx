@@ -57,12 +57,12 @@ export default function Footer() {
   return (
     <div className="min-h-[40vh] flex flex-col border-t border-neutral-500 mt-2">
       <div className="flex-1">
-        <div className="flex justify-between mx-4 my-4">
-          <div>
+        <div className="flex justify-between mx-4 my-4 flex-wrap">
+          <div className="">
             <span className="font-bold tracking-widest">CATEGORIES</span>
             {renderLinks(categories)}
           </div>
-          <div>
+          <div className="">
             <span className="font-bold tracking-widest">SUPPORT</span>
             {renderLinks(support)}
           </div>
@@ -79,7 +79,7 @@ export default function Footer() {
       <div className="border-t border-neutral-500 p-4">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4">
           {/* Newsletter Subscription */}
-          <div className="flex items-center w-full max-w-lg">
+          <div className="flex flex-col sm:flex-row items-center w-full max-w-lg">
             <input
               type="email"
               placeholder="Your Email Address"

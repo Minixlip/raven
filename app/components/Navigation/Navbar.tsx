@@ -13,7 +13,7 @@ export default function Navbar() {
         <Menu />
         <Link
           href={'/'}
-          className=" h-full flex items-center justify-center flex-1 gap-1 font-bold text-2xl tracking-widest border-r border-r-neutral-500"
+          className=" h-full flex items-center justify-center flex-1 gap-1 font-bold md:text-2xl tracking-widest border-r border-r-neutral-500"
         >
           <span>Raven</span>
           <GiBirdClaw />

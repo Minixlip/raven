@@ -11,6 +11,7 @@ import { FaInstagramSquare } from 'react-icons/fa';
 import Link from 'next/link';
 import JournalDisplay from './components/Home/JournalDisplay';
 import JournalCardDisplay from './components/Home/JournalCardDisplay';
+import Chatbot from './components/Misc/Chatbot';
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
       <hr className="hidden md:flex w-full py-10 border-neutral-500" />
       <JournalDisplay />
       <JournalCardDisplay />
+      <Chatbot />
     </main>
   );
 }
