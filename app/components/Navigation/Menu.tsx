@@ -81,7 +81,7 @@ export default function Menu() {
         </motion.button>
       </MotionConfig>
       {open && (
-        <div className="absolute bg-black text-white left-0 top-20 w-full h-[calc(100vh-80px)] overflow-hidden ">
+        <div className="absolute bg-black text-white left-0 top-20 w-full h-[calc(100vh-80px)] overflow-scroll  ">
           <motion.div
             initial={{ y: '-200%' }}
             animate={open ? { y: '0%' } : { y: '-200%' }}
@@ -101,7 +101,7 @@ export default function Menu() {
 
             {openShop ? (
               <div
-                className="overflow-hidden h-0 transition-[height] duration-300"
+                className=" h-0 transition-[height] duration-300"
                 style={{ height: openShop ? 'auto' : '0px' }}
               >
                 <motion.div
