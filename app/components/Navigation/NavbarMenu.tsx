@@ -13,8 +13,8 @@ export default function NavbarMenu() {
   const [shoppingBagActive, setShoppingBagActive] = useState(false);
   const [items, setItems] = useState([]);
 
-  const searchRef = useRef(null);
-  const bagRef = useRef(null);
+  const searchRef = useRef<HTMLDivElement | null>(null);
+  const bagRef = useRef<HTMLDivElement | null>(null);
 
   // Close search bar when clicking outside
   useEffect(() => {
