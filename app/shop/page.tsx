@@ -1,3 +1,9 @@
+import ShopItem from '../shop-item/page';
+
 export default function Shop() {
-  return <div>Shop</div>;
+  return (
+    <div>
+      <ShopItem />
+    </div>
+  );
 }
