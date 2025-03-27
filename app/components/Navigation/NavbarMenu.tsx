@@ -97,11 +97,11 @@ export default function NavbarMenu() {
         initial={{ x: '100%' }}
         animate={{ x: shoppingBagActive ? '0%' : '100%' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`fixed top-0 right-0 h-full w-[40%] bg-black border-2 border-neutral-500 shadow-lg z-50`}
+        className={`fixed top-0 right-0 h-full md:w-[30%] bg-black border-2 border-neutral-500 shadow-lg z-50`}
         ref={bagRef}
       >
         <div className="p-4 flex justify-between items-center border-b border-neutral-500">
-          <h2 className="text-xl font-bold text-neutral-500 flex gap-2">
+          <h2 className="sm:text-xl font-bold text-neutral-500 flex gap-2 flex-wrap">
             <span className="text-white">{items.length}</span>ITEMS IN YOUR BAG.
           </h2>
           <button
@@ -127,14 +127,14 @@ export default function NavbarMenu() {
             </div>
           )}
           <div className="flex flex-col gap-8 border-t-2 border-neutral-500 w-[full] pt-6">
-            <div className="flex justify-between">
+            <div className="flex flex-wrap justify-between ">
               <div className="flex flex-col gap-4">
                 <span className="text-sm text-neutral-500 font-bold">
                   SHIPPING & TAXES
                 </span>
-                <span className="text-3xl font-bold">SUBTOTAL</span>
+                <span className="sm:text-3xl font-bold">SUBTOTAL</span>
               </div>
-              <div className="flex flex-col items-end gap-4">
+              <div className="flex flex-col lg:items-end gap-4">
                 <span className="text-sm text-neutral-500 font-bold">
                   CALCULATED AT CHECKOUT
                 </span>

@@ -89,7 +89,7 @@ export default function Menu() {
             className="flex flex-col text-2xl font-extrabold tracking-wide "
           >
             <div className=" px-4 py-4 flex justify-between items-center w-full">
-              <Link href={'/'}>
+              <Link href={'/shop'}>
                 <span>SHOP</span>
               </Link>
               <FaChevronDown
