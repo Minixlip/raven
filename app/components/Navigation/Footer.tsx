@@ -34,7 +34,7 @@ export default function Footer() {
     'TWITCH',
   ];
 
-  const renderLinks = (links) => (
+  const renderLinks = (links: string[]) => (
     <ul className="space-y-2 mt-4 font-semibold">
       {links.map((link) => (
         <li key={link}>
