@@ -11,7 +11,9 @@ export default function CardNavigation(props: any) {
   return (
     <div
       className="relative min-h-[49vh] w-full border-2 border-neutral-500 cursor-pointer flex flex-col justify-between py-4 px-2 overflow-hidden"
-      onClick={() => (location.href = `/${props.cardInfo.clothingType}`)}
+      onClick={() =>
+        (location.href = `/shop?category=${props.cardInfo.clothingType.toUpperCase()}`)
+      }
       onMouseEnter={() => setPreviewHover(true)}
       onMouseLeave={() => setPreviewHover(false)}
     >

@@ -10,6 +10,12 @@ export default function Card(props: any) {
   return (
     <div
       className="flex-1 flex flex-col border-2 border-neutral-500 cursor-pointer"
+      onClick={() =>
+        (location.href = `/shop/${props.cardInfo.NameOfClothing.replaceAll(
+          ' ',
+          '-'
+        )}`)
+      }
       onMouseEnter={() => setDisplayPhoto(primaryPhotos[1])}
       onMouseLeave={() => setDisplayPhoto(primaryPhotos[0])}
     >

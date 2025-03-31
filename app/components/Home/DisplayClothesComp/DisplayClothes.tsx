@@ -43,7 +43,7 @@ export default function DisplayClothes() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
-              onClick={() => (location.href = '/about')}
+              onClick={() => (location.href = '/shop/Motion-Performance-Pants')}
               onMouseEnter={() => setLeftSmallPreview((prev) => !prev)}
               onMouseLeave={() => setLeftSmallPreview((prev) => !prev)}
               className="absolute mt-4 border-2 border-neutral-500 bg-black p-4 w-[200px] cursor-pointer  z-[50]"
@@ -64,7 +64,7 @@ export default function DisplayClothes() {
                   OUTERWEAR
                 </span>
                 <span className="text-sm font-bold">
-                  ELEMENTS WEATHER JACKET
+                  MOTION PERFORMANCE PANTS
                 </span>
                 <div className="flex justify-between items-center pt-3">
                   <span className="text-sm font-bold">$185</span>
@@ -104,7 +104,7 @@ export default function DisplayClothes() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
-              onClick={() => (location.href = '/about')}
+              onClick={() => (location.href = '/shop/Elements-Weather-Jacket')}
               onMouseEnter={() => setRightSmallPreview((prev) => !prev)}
               onMouseLeave={() => setRightSmallPreview((prev) => !prev)}
               className="absolute mt-4 border-2 border-neutral-500 bg-black p-4 w-[200px] cursor-pointer z-[50]"

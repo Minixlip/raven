@@ -88,7 +88,10 @@ export default function Menu() {
             transition={{ duration: 0.3, delay: open ? 0 : 0.3 }}
             className="flex flex-col text-2xl font-extrabold tracking-wide "
           >
-            <div className=" px-4 py-4 flex justify-between items-center w-full">
+            <div
+              className=" px-4 py-4 flex justify-between items-center w-full"
+              onClick={() => setOpen(false)}
+            >
               <Link href={'/shop'}>
                 <span>SHOP</span>
               </Link>

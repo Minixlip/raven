@@ -62,8 +62,8 @@ export default function HomeCardSection2() {
       secondImage:
         'https://framerusercontent.com/images/rO3nueqqdzWMFmQMfScFEHQKDK8.jpg',
       TypeOfClothing: 'TOPS',
-      NameOfClothing: 'FREEDOM STATEMENT CREWNECK',
-      Price: 145,
+      NameOfClothing: 'FREEDOM GRAPHIC TEE',
+      Price: 85,
     },
     {
       New: true,

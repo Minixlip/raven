@@ -12,6 +12,12 @@ export default function ShopCard(props: any) {
       className="flex-1 flex flex-col border-2 border-neutral-500 cursor-pointer min-w-[400px] relative"
       onMouseEnter={() => setDisplayPhoto(primaryPhotos[1])}
       onMouseLeave={() => setDisplayPhoto(primaryPhotos[0])}
+      onClick={() =>
+        (location.href = `/shop/${props.cardInfo.nameOfClothing.replaceAll(
+          ' ',
+          '-'
+        )}`)
+      }
     >
       <motion.div
         style={{
