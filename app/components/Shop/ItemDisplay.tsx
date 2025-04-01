@@ -24,7 +24,7 @@ export default function ItemDisplay({ clothing }: { clothing: ClothingItem }) {
 
   const linkBackToCategory = `/shop/?category=${clothing.typeOfClothing}`;
   return (
-    <div className="min-h-screen flex flex-col-reverse md:flex-row bg-black">
+    <div className="min-h-screen flex flex-col-reverse lg:flex-row bg-black">
       <div className="flex-1 flex flex-col border-r border-neutral-500 ">
         <div className="flex-1 flex flex-col py-4 px-4 font-bold">
           <div className="flex-1">
@@ -182,14 +182,14 @@ export default function ItemDisplay({ clothing }: { clothing: ClothingItem }) {
         <motion.div
           key={selectedImg} // Triggers animation when the image changes
           initial={{ backgroundPositionX: '-100%' }} // Start from the left
-          animate={{ backgroundPositionX: '0%' }} // Move to the center
+          animate={{ backgroundPositionX: '50%' }} // Move to the center
           transition={{ duration: 0.5, ease: 'easeOut' }} // Smooth transition
           className="h-full w-full"
           style={{
             backgroundImage: `url(${selectedImg})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'top',
+            backgroundPosition: 'center',
             zIndex: '-99',
           }}
         >

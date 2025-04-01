@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/Navigation/Navbar';
 import Footer from './components/Navigation/Footer';
+import { AuthContextProvider } from './context/AuthContext';
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -21,16 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${roboto.variable} font-sans antialiased`}>
-        <div className="sticky top-0 w-full z-50">
-          <Navbar />
-        </div>
-        <div className="min-h-[100vh]">{children}</div>
-        <div>
-          <Footer />
-        </div>
-      </body>
-    </html>
+    <AuthContextProvider>
+      <html lang="en">
+        <body className={`${roboto.variable} font-sans antialiased`}>
+          <div className="sticky top-0 w-full z-50">
+            <Navbar />
+          </div>
+          <div className="min-h-[100vh]">{children}</div>
+          <div>
+            <Footer />
+          </div>
+        </body>
+      </html>
+    </AuthContextProvider>
   );
 }
