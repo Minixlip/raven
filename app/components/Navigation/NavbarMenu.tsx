@@ -62,10 +62,13 @@ export default function NavbarMenu() {
         >
           <FiSearch />
         </button>
-        <button className="border-r border-r-neutral-500 h-full px-4 hover:bg-neutral-800">
-          <Link href={'/profile'}>
+        <button
+          onClick={() => (location.href = '/profile')}
+          className="border-r border-r-neutral-500 h-full px-4 hover:bg-neutral-800"
+        >
+          <span>
             <IoPerson />
-          </Link>
+          </span>
         </button>
         <button
           onClick={() => setShoppingBagActive((prev) => !prev)}

@@ -10,27 +10,27 @@ export default function Menu() {
   const [openShop, setOpenShop] = useState(false);
 
   const links = [
-    { href: '/', label: 'ABOUT' },
-    { href: '/', label: 'JOURNAL' },
-    { href: '/', label: 'CONTACT' },
+    { href: '/about', label: 'ABOUT' },
+    { href: '/journal', label: 'JOURNAL' },
+    { href: '/contact', label: 'CONTACT' },
   ];
 
   const shopCategories = [
-    { href: '/', label: 'ALL' },
-    { href: '/', label: 'TOPS' },
-    { href: '/', label: 'BOTTOMS' },
-    { href: '/', label: 'OUTERWEAR' },
-    { href: '/', label: 'ACCESSORIES' },
-    { href: '/', label: 'NEW ARRIVALS' },
-    { href: '/', label: 'BEST SELLERS' },
-    { href: '/', label: 'SALE' },
+    { href: '/shop', label: 'ALL' },
+    { href: '/shop/?category=TOPS', label: 'TOPS' },
+    { href: '/shop/?category=BOTTOMS', label: 'BOTTOMS' },
+    { href: '/shop/?category=OUTERWEAR', label: 'OUTERWEAR' },
+    { href: '/shop/?category=ACCESSORIES', label: 'ACCESSORIES' },
+    { href: '/shop/?category=NEW-ARRIVALS', label: 'NEW ARRIVALS' },
+    { href: '/shop/?category=BEST-SELLERS', label: 'BEST SELLERS' },
+    { href: '/shop/?category=SALE', label: 'SALE' },
   ];
 
   const shopCollections = [
-    { href: '/', label: 'ELEMENTS' },
-    { href: '/', label: 'MOTION' },
-    { href: '/', label: 'FREEDOM' },
-    { href: '/', label: 'ESSENTIALS' },
+    { href: '/collections/elements', label: 'ELEMENTS' },
+    { href: '/collections/motion', label: 'MOTION' },
+    { href: '/collections/freedom', label: 'FREEDOM' },
+    { href: '/collection/essentials', label: 'ESSENTIALS' },
   ];
 
   return (
@@ -121,7 +121,12 @@ export default function Menu() {
                         key={index}
                         className="mt-2"
                       >
-                        <Link href={category.href}>{category.label}</Link>
+                        <Link
+                          onClick={() => setOpen((prev) => !prev)}
+                          href={category.href}
+                        >
+                          {category.label}
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -159,13 +164,13 @@ export default function Menu() {
                 ))}
                 <div className="flex flex-col gap-4">
                   <Link
-                    href={'/'}
+                    href={'/about'}
                     className="mx-4 text-neutral-500 hover:text-white"
                   >
                     SHIPPING & DELIVERY
                   </Link>
                   <Link
-                    href={'/'}
+                    href={'/about'}
                     className="mx-4 text-neutral-500 hover:text-white"
                   >
                     RETURNS & REFUNDS
