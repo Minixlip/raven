@@ -155,6 +155,7 @@ export default function Menu() {
                   >
                     <Link
                       href={link.href}
+                      onClick={() => setOpen((prev) => !prev)}
                       className="mx-4 "
                     >
                       {link.label}
@@ -164,13 +165,15 @@ export default function Menu() {
                 ))}
                 <div className="flex flex-col gap-4">
                   <Link
-                    href={'/about'}
+                    href={'/contact'}
+                    onClick={() => setOpen((prev) => !prev)}
                     className="mx-4 text-neutral-500 hover:text-white"
                   >
                     SHIPPING & DELIVERY
                   </Link>
                   <Link
-                    href={'/about'}
+                    href={'/contact'}
+                    onClick={() => setOpen((prev) => !prev)}
                     className="mx-4 text-neutral-500 hover:text-white"
                   >
                     RETURNS & REFUNDS

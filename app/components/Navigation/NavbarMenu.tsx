@@ -11,51 +11,71 @@ import Link from 'next/link';
 export default function NavbarMenu() {
   const [searchActive, setSearchActive] = useState(false);
   const [shoppingBagActive, setShoppingBagActive] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]); // Replace this with real cart items
+
+  const [query, setQuery] = useState('');
+  const [allProducts, setAllProducts] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const searchRef = useRef<HTMLDivElement | null>(null);
   const bagRef = useRef<HTMLDivElement | null>(null);
 
-  // Close search bar when clicking outside
+  // Fetch products
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target as Node)
-      ) {
-        setSearchActive(false);
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/api/shop');
+        const data = await res.json();
+        setAllProducts(data);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      } finally {
+        setLoading(false);
       }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter products by query
+  useEffect(() => {
+    if (!query.trim()) {
+      setFilteredResults([]);
+      return;
     }
 
-    if (searchActive) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
+    const results = allProducts.filter((product: any) =>
+      product.nameOfClothing.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredResults(results);
+  }, [query, allProducts]);
 
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+  // Handle click outside search
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setTimeout(() => setSearchActive(false), 100);
+      }
+    };
+    if (searchActive) document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
   }, [searchActive]);
 
-  // Close when clicking outside
+  // Handle click outside bag
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (bagRef.current && !bagRef.current.contains(event.target as Node)) {
+    const handleClick = (e: MouseEvent) => {
+      if (bagRef.current && !bagRef.current.contains(e.target as Node)) {
         setShoppingBagActive(false);
       }
-    }
-
-    if (shoppingBagActive) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    };
+    if (shoppingBagActive) document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
   }, [shoppingBagActive]);
 
   return (
-    <div className=" h-full">
-      <div className="text-2xl h-full ">
+    <div className="h-full">
+      <div className="text-2xl h-full flex">
         <button
           onClick={() => setSearchActive((prev) => !prev)}
           className="border-r border-r-neutral-500 h-full px-4 hover:bg-neutral-800"
@@ -66,13 +86,11 @@ export default function NavbarMenu() {
           onClick={() => (location.href = '/profile')}
           className="border-r border-r-neutral-500 h-full px-4 hover:bg-neutral-800"
         >
-          <span>
-            <IoPerson />
-          </span>
+          <IoPerson />
         </button>
         <button
           onClick={() => setShoppingBagActive((prev) => !prev)}
-          className=" h-full px-4 border-r border-r-neutral-500 relative hover:bg-neutral-800"
+          className="h-full px-4 border-r border-r-neutral-500 relative hover:bg-neutral-800"
         >
           <FaShoppingBag />
           <span className="p-1 bg-white text-black fixed top-0 right-0 text-sm font-bold">
@@ -80,32 +98,64 @@ export default function NavbarMenu() {
           </span>
         </button>
       </div>
-      {/* Search Bar */}
+
+      {/* Search Box */}
       {searchActive && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50">
           <div
             ref={searchRef}
-            className="bg-black border border-white p-4 rounded-md shadow-lg w-1/3 flex items-center gap-2"
+            className="bg-black border border-white p-4 rounded-md shadow-lg w-1/3 flex flex-col gap-2"
           >
-            <PiMagnifyingGlass className="h-6 w-6" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full p-1 border bg-black border-black rounded-md focus:outline-none placeholder:text-white placeholder:font-bold placeholder:text-lg placeholder:tracking-wider font-bold"
-            />
+            <div className="flex items-center gap-2">
+              <PiMagnifyingGlass className="h-6 w-6" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search clothing..."
+                className="w-full p-1 border bg-black border-black rounded-md focus:outline-none placeholder:text-white placeholder:font-bold placeholder:text-lg placeholder:tracking-wider font-bold"
+              />
+            </div>
+
+            {/* Search Results */}
+            <div className="mt-2 bg-neutral-900 rounded-md max-h-60 overflow-y-auto">
+              {loading ? (
+                <p className="p-2 text-neutral-500">Loading products...</p>
+              ) : filteredResults.length > 0 ? (
+                filteredResults.map((product: any) => (
+                  <Link
+                    key={product._id}
+                    onClick={() => setSearchActive(false)}
+                    href={`/shop/${product.nameOfClothing.replaceAll(
+                      ' ',
+                      '-'
+                    )}`}
+                    className="block p-2 hover:bg-neutral-800 text-white"
+                  >
+                    {product.nameOfClothing} - ${product.price}
+                  </Link>
+                ))
+              ) : (
+                <p className="p-2 text-neutral-500">No results found.</p>
+              )}
+            </div>
           </div>
         </div>
       )}
+
+      {/* Shopping Bag */}
       <motion.div
         initial={{ x: '100%' }}
         animate={{ x: shoppingBagActive ? '0%' : '100%' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`fixed top-0 right-0 h-full md:w-[30%] bg-black border-2 border-neutral-500 shadow-lg z-50`}
+        className="fixed top-0 right-0 h-full md:w-[30%] bg-black border-2 border-neutral-500 shadow-lg z-50 flex flex-col"
         ref={bagRef}
       >
+        {/* Header */}
         <div className="p-4 flex justify-between items-center border-b border-neutral-500">
-          <h2 className="sm:text-xl font-bold text-neutral-500 flex gap-2 flex-wrap">
-            <span className="text-white">{items.length}</span>ITEMS IN YOUR BAG.
+          <h2 className="sm:text-xl font-bold text-neutral-500 flex gap-2">
+            <span className="text-white">{items.length}</span> ITEMS IN YOUR
+            BAG.
           </h2>
           <button
             onClick={() => setShoppingBagActive(false)}
@@ -115,52 +165,50 @@ export default function NavbarMenu() {
           </button>
         </div>
 
-        {/* Bag Content */}
-        <div className="p-4 flex flex-col h-[calc(100%-80px)] w-full">
+        {/* Content */}
+        <div className="p-4 flex-grow overflow-auto">
           {items.length === 0 ? (
-            <div className="flex flex-col justify-center items-center flex-1">
+            <div className="flex flex-col justify-center items-center h-full">
               <p className="text-3xl font-bold">YOUR BAG IS EMPTY</p>
               <p className="text-sm font-bold text-neutral-500">
                 ADD SOME ITEMS TO THE BAG.
               </p>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center flex-1">
-              <p className="text-3xl font-bold">YOU HAVE ITEMS</p>
+            <div>
+              {/* Example list item, replace with real item map */}
+              {items.map((item: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="text-white py-2 border-b border-neutral-600"
+                >
+                  {item.name} — ${item.price}
+                </div>
+              ))}
             </div>
           )}
-          <div className="flex flex-col gap-8 border-t-2 border-neutral-500 w-[full] pt-6">
-            <div className="flex flex-wrap justify-between ">
-              <div className="flex flex-col gap-4">
-                <span className="text-sm text-neutral-500 font-bold">
-                  SHIPPING & TAXES
-                </span>
-                <span className="sm:text-3xl font-bold">SUBTOTAL</span>
-              </div>
-              <div className="flex flex-col lg:items-end gap-4">
-                <span className="text-sm text-neutral-500 font-bold">
-                  CALCULATED AT CHECKOUT
-                </span>
-                <span className="text-3xl font-bold">$0</span>
-              </div>
-            </div>
-            {items.length ? (
-              <button className="text-black bg-white p-4 text-2xl font-bold tracking-tight rounded-lg">
-                CHECKOUT
-              </button>
-            ) : (
-              <button
-                disabled
-                className="text-black bg-neutral-500 p-4 text-2xl font-bold tracking-tight rounded-lg"
-              >
-                YOUR BAG IS EMPTY
-              </button>
-            )}
+        </div>
+
+        {/* Footer buttons */}
+        <div className="border-t border-neutral-500 p-4 space-y-2">
+          <div className="flex justify-between text-white font-bold text-lg">
+            <span>SUBTOTAL</span>
+            <span>
+              $
+              {items
+                .reduce((acc: number, item: any) => acc + item.price, 0)
+                .toFixed(2)}
+            </span>
           </div>
+          <button className="bg-white text-black py-2 w-full font-bold rounded-md hover:bg-neutral-300">
+            VIEW BAG
+          </button>
+          <button className="bg-white text-black py-2 w-full font-bold rounded-md hover:bg-neutral-300">
+            CHECKOUT
+          </button>
         </div>
       </motion.div>
 
-      {/* Background overlay when bag is open */}
       {shoppingBagActive && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40" />
       )}
