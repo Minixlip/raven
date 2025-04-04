@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaArrowTurnUp } from 'react-icons/fa6';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useCart } from '../../context/CartContext';
 
 interface ClothingItem {
   nameOfClothing: string;
@@ -21,6 +22,7 @@ export default function ItemDisplay({ clothing }: { clothing: ClothingItem }) {
   const [selectedImg, setSelectedImg] = useState(clothing.img1);
   const [selectedSize, setSelectedSize] = useState('XS');
   const [selectedColour, setSelectedColour] = useState('Black');
+  const { addToCart } = useCart();
 
   const linkBackToCategory = `/shop/?category=${clothing.typeOfClothing}`;
   return (
@@ -172,7 +174,20 @@ export default function ItemDisplay({ clothing }: { clothing: ClothingItem }) {
             </div>
           </div>
           <div className="flex-1 flex justify-end items-center">
-            <button className="border bg-white text-black font-bold p-4 rounded-md">
+            <button
+              className="border bg-white text-black font-bold p-4 rounded-md"
+              onClick={() =>
+                addToCart({
+                  nameOfClothing: clothing.nameOfClothing,
+                  typeOfClothing: clothing.typeOfClothing,
+                  price: clothing.price,
+                  size: selectedSize,
+                  colour: selectedColour,
+                  quantity: 1,
+                  img: selectedImg,
+                })
+              }
+            >
               ADD TO BAG
             </button>
           </div>

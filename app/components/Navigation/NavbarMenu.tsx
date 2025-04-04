@@ -6,6 +6,8 @@ import { FaShoppingBag } from 'react-icons/fa';
 import { PiMagnifyingGlass } from 'react-icons/pi';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useCart } from '../../context/CartContext';
+
 import Link from 'next/link';
 
 export default function NavbarMenu() {
@@ -17,6 +19,8 @@ export default function NavbarMenu() {
   const [allProducts, setAllProducts] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { cart, removeFromCart, clearCart } = useCart();
 
   const searchRef = useRef<HTMLDivElement | null>(null);
   const bagRef = useRef<HTMLDivElement | null>(null);
@@ -94,7 +98,7 @@ export default function NavbarMenu() {
         >
           <FaShoppingBag />
           <span className="p-1 bg-white text-black fixed top-0 right-0 text-sm font-bold">
-            {items.length}
+            {cart.length}
           </span>
         </button>
       </div>
@@ -154,8 +158,7 @@ export default function NavbarMenu() {
         {/* Header */}
         <div className="p-4 flex justify-between items-center border-b border-neutral-500">
           <h2 className="sm:text-xl font-bold text-neutral-500 flex gap-2">
-            <span className="text-white">{items.length}</span> ITEMS IN YOUR
-            BAG.
+            <span className="text-white">{cart.length}</span> ITEMS IN YOUR BAG.
           </h2>
           <button
             onClick={() => setShoppingBagActive(false)}
@@ -166,8 +169,8 @@ export default function NavbarMenu() {
         </div>
 
         {/* Content */}
-        <div className="p-4 flex-grow overflow-auto">
-          {items.length === 0 ? (
+        <div className=" flex-grow overflow-auto">
+          {cart.length === 0 ? (
             <div className="flex flex-col justify-center items-center h-full">
               <p className="text-3xl font-bold">YOUR BAG IS EMPTY</p>
               <p className="text-sm font-bold text-neutral-500">
@@ -177,12 +180,40 @@ export default function NavbarMenu() {
           ) : (
             <div>
               {/* Example list item, replace with real item map */}
-              {items.map((item: any, idx: number) => (
+              {cart.map((item: any, idx: number) => (
                 <div
                   key={idx}
-                  className="text-white py-2 border-b border-neutral-600"
+                  className="text-white border-b border-neutral-600 flex justify-between"
                 >
-                  {item.name} — ${item.price}
+                  <div
+                    className="min-w-[100px] min-h-[100px] border border-neutral-500"
+                    style={{
+                      backgroundImage: `url(${item.img})`,
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'top',
+                    }}
+                  ></div>
+                  <div className="flex flex-1 justify-between px-4 py-1 font-bold">
+                    <div className="flex flex-col justify-between gap-2">
+                      <div className="flex flex-col text-lg">
+                        <span>{item.nameOfClothing}</span>
+                        <span className="text-neutral-500">{item.size}</span>
+                      </div>
+                      <div className="flex gap-2 items-center">
+                        <span className=" px-1">{item.quantity}</span>
+                        <button
+                          className="border px-1"
+                          onClick={() => removeFromCart(item.id)}
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-between">
+                      <span>${item.price * item.quantity}</span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -195,15 +226,18 @@ export default function NavbarMenu() {
             <span>SUBTOTAL</span>
             <span>
               $
-              {items
+              {cart
                 .reduce((acc: number, item: any) => acc + item.price, 0)
                 .toFixed(2)}
             </span>
           </div>
-          <button className="bg-white text-black py-2 w-full font-bold rounded-md hover:bg-neutral-300">
-            VIEW BAG
-          </button>
-          <button className="bg-white text-black py-2 w-full font-bold rounded-md hover:bg-neutral-300">
+          <button
+            className="bg-white text-black py-2 w-full font-bold rounded-md hover:bg-neutral-300"
+            onClick={() => {
+              alert('Checkout successful!');
+              clearCart();
+            }}
+          >
             CHECKOUT
           </button>
         </div>
