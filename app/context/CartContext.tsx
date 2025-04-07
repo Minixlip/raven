@@ -4,10 +4,13 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 interface CartItem {
   id: string;
-  name: string;
+  nameOfClothing: string;
+  typeOfClothing: string;
+  colour: string;
   price: number;
   quantity: number;
   img: string;
+  size: string;
 }
 
 interface CartContextType {
@@ -38,11 +41,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       const existingItemIndex = prevCart.findIndex(
-        (cartItem) => cartItem.id === item.id
+        (cartItem) => cartItem.id === item.id && cartItem.size === item.size
       );
 
       if (existingItemIndex !== -1) {
-        // If the item already exists, increase its quantity
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex] = {
           ...updatedCart[existingItemIndex],
@@ -51,18 +53,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         return updatedCart;
       }
 
-      // If the item doesn't exist, add it with quantity 1
       return [...prevCart, { ...item, quantity: 1 }];
     });
   };
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: string, size: string) => {
     setCart((prevCart) => {
       return prevCart
         .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+          item.id === id && item.size === size
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
         )
-        .filter((item) => item.quantity > 0); // Remove if quantity reaches 0
+        .filter((item) => item.quantity > 0);
     });
   };
 

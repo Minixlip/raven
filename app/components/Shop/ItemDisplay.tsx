@@ -178,6 +178,7 @@ export default function ItemDisplay({ clothing }: { clothing: ClothingItem }) {
               className="border bg-white text-black font-bold p-4 rounded-md"
               onClick={() =>
                 addToCart({
+                  id: clothing.nameOfClothing,
                   nameOfClothing: clothing.nameOfClothing,
                   typeOfClothing: clothing.typeOfClothing,
                   price: clothing.price,

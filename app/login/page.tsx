@@ -4,6 +4,8 @@ import { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogin } from '../hooks/UseLogin';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Login() {
   const { login } = useLogin();
@@ -13,6 +15,7 @@ export default function Login() {
     password: '',
   });
   const [error, setError] = useState(null);
+  const [focusedInput, setFocusedInput] = useState(null);
   const { user } = useAuthContext();
 
   // Redirect if the user is already logged in
@@ -62,25 +65,53 @@ export default function Login() {
   if (user) return null;
 
   return (
-    <div>
-      <h2>Login</h2>
-      <input
+    <div className="flex flex-col min-h-screen justify-center items-center gap-4">
+      <motion.input
         type="email"
         name="emailAddress"
         placeholder="Email"
         onChange={(e) => handleChange(e)}
         required
+        className="bg-transparent placeholder:text-neutral-500 p-2 border-b border-neutral-500 text-2xl"
+        onFocus={() => setFocusedInput('emailAddress')}
+        onBlur={() => setFocusedInput(null)}
+        animate={{
+          backgroundColor:
+            focusedInput === 'emailAddress' ? '#737373' : 'transparent',
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
       />
-      <input
+      <motion.input
         type="password"
         name="password"
         placeholder="Password"
         onChange={(e) => handleChange(e)}
         required
+        className="bg-transparent placeholder:text-neutral-500 p-2 border-b border-neutral-500 text-2xl"
+        onFocus={() => setFocusedInput('password')}
+        onBlur={() => setFocusedInput(null)}
+        animate={{
+          backgroundColor:
+            focusedInput === 'password' ? '#737373' : 'transparent',
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
       />
-      <button onClick={(e) => handleSubmit(e)}>Login</button>
-      <span>{formData.emailAddress}</span>
-      <span>{formData.password}</span>
+      <button
+        onClick={(e) => handleSubmit(e)}
+        className="text-2xl font-semibold"
+      >
+        Login
+      </button>
+      <div className="pt-4">
+        <Link
+          href={'/register'}
+          className="text-xl font-semibold flex gap-2 "
+        >
+          Don't have an account?
+          <br />
+          <span className="text-neutral-500">Register here</span>
+        </Link>
+      </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );

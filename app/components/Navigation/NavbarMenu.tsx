@@ -7,6 +7,8 @@ import { PiMagnifyingGlass } from 'react-icons/pi';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useCart } from '../../context/CartContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useRouter } from 'next/navigation';
 
 import Link from 'next/link';
 
@@ -21,6 +23,8 @@ export default function NavbarMenu() {
   const [loading, setLoading] = useState(true);
 
   const { cart, removeFromCart, clearCart } = useCart();
+  const { user } = useAuthContext();
+  const router = useRouter();
 
   const searchRef = useRef<HTMLDivElement | null>(null);
   const bagRef = useRef<HTMLDivElement | null>(null);
@@ -76,6 +80,43 @@ export default function NavbarMenu() {
     if (shoppingBagActive) document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, [shoppingBagActive]);
+
+  const HandleCheckOut = async () => {
+    if (!user) return router.push('/login');
+
+    try {
+      const emailAddress = user.emailAddress;
+      const products = cart.map((item) => ({
+        nameOfClothing: item.nameOfClothing,
+        TypeOfClothing: item.size,
+        price: item.price,
+        img1: item.img,
+      }));
+
+      // Get token from localStorage
+      const token = user.token;
+      console.log('my token is:' + token);
+
+      const res = await fetch('http://localhost:4000/api/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // ⬅️ include token here
+        },
+        body: JSON.stringify({ emailAddress, products }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || 'Something went wrong');
+
+      alert('Checkout successful!');
+      clearCart();
+    } catch (err: any) {
+      alert(`Checkout failed: ${err.message}`);
+      console.error('Checkout error:', err);
+    }
+  };
 
   return (
     <div className="h-full">
@@ -204,7 +245,7 @@ export default function NavbarMenu() {
                         <span className=" px-1">{item.quantity}</span>
                         <button
                           className="border px-1"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => removeFromCart(item.id, item.size)}
                         >
                           -
                         </button>
@@ -233,10 +274,7 @@ export default function NavbarMenu() {
           </div>
           <button
             className="bg-white text-black py-2 w-full font-bold rounded-md hover:bg-neutral-300"
-            onClick={() => {
-              alert('Checkout successful!');
-              clearCart();
-            }}
+            onClick={() => HandleCheckOut()}
           >
             CHECKOUT
           </button>
