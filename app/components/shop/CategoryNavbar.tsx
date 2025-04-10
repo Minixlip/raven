@@ -27,7 +27,7 @@ export default function CategoryNavbar() {
   return (
     <div className="flex flex-col">
       {/* Selected Category Title with Animation */}
-      <motion.div className="px-4 py-8 border-b border-neutral-500 font-bold text-6xl">
+      <motion.div className="px-4 py-8 border-b border-neutral-500 font-bold md:text-6xl text-2xl">
         <motion.div
           key={selectedCategory}
           initial={{ rotateX: 90, opacity: 0 }}

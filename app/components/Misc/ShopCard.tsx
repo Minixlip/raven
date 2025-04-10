@@ -9,7 +9,7 @@ export default function ShopCard(props: any) {
 
   return (
     <div
-      className="flex-1 flex flex-col border-2 border-neutral-500 cursor-pointer min-w-[400px] relative"
+      className="flex-1 flex flex-col border-2 border-neutral-500 cursor-pointer md:min-w-[400px] relative"
       onMouseEnter={() => setDisplayPhoto(primaryPhotos[1])}
       onMouseLeave={() => setDisplayPhoto(primaryPhotos[0])}
       onClick={() =>

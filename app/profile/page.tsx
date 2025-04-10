@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
+import Image from 'next/image';
 
 export default function Profile() {
   const { user } = useAuthContext();
@@ -71,14 +72,14 @@ export default function Profile() {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className=" flex flex-col min-h-screen gap-8">
-      <div className="flex justify-between font-bold  p-4 bg-black border-b border-neutral-500">
+    <div className=" flex flex-col min-h-screen justify-evenly ">
+      <div className="flex flex-col md:flex-row gap-4 justify-between font-bold  p-4 bg-black border-b border-neutral-500">
         <h2 className="text-6xl select-none">
           Welcome, {user?.firstName || storedUser?.firstName}
         </h2>
         <button
           onClick={logout}
-          className="border border-neutral-500 p-4 rounded-lg"
+          className="border border-neutral-500 p-4 rounded-lg w-fit"
         >
           Logout
         </button>
@@ -87,29 +88,36 @@ export default function Profile() {
       <div className="">
         <span className="text-6xl select-none font-bold">Orders</span>
       </div>
-      <div className="p-4">
+      <div className="flex flex-col pt-4">
         {error && <p className="text-red-500">{error}</p>}
         {orders ? (
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4 flex-1">
             {orders.products?.map((product, index) => (
               <div
                 key={index}
-                className="border p-4 rounded"
+                className=" md:flex-1"
               >
-                <p>
-                  <strong>Name:</strong> {product.nameOfClothing}
-                </p>
-                <p>
-                  <strong>Type:</strong> {product.TypeOfClothing}
-                </p>
-                <p>
-                  <strong>Price:</strong> £{product.price}
-                </p>
-                <img
-                  src={product.img1}
-                  alt={product.nameOfClothing}
-                  className="w-32 h-32 object-cover"
-                />
+                <div className="border flex flex-col sm:flex-row justify-between w-fit md:w-full">
+                  <div className="flex flex-col gap-2 m-2 ml-4">
+                    <p className="">
+                      <strong>Name:</strong> {product.nameOfClothing}
+                    </p>
+                    <p className="">
+                      <strong>Type:</strong> {product.TypeOfClothing}
+                    </p>
+                    <p className="">
+                      <strong>Price:</strong> £{product.price}
+                    </p>
+                  </div>
+                  {product.img1 && (
+                    <Image
+                      src={product.img1}
+                      alt={product.nameOfClothing}
+                      width={300}
+                      height={300}
+                    />
+                  )}
+                </div>
               </div>
             ))}
           </div>

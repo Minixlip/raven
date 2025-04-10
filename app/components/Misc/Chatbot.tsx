@@ -3,34 +3,54 @@ import { MessageSquare, X } from 'lucide-react';
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { text: 'Hello! How can I help you?', sender: 'bot' },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
-    const newMessages = [...messages, { text: input, sender: 'user' }];
-    setMessages(newMessages);
+
+    const userMsg = { text: input, sender: 'user' };
+    setMessages((prev) => [...prev, userMsg]);
+    const currentInput = input;
     setInput('');
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      const res = await fetch('http://localhost:5000/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: currentInput }),
+      });
+
+      const data = await res.json();
+
+      setMessages((prev) => [...prev, { text: data.response, sender: 'bot' }]);
+    } catch (err) {
+      console.error('Error talking to chatbot:', err);
       setMessages((prev) => [
         ...prev,
-        { text: "I'm just a dummy bot!", sender: 'bot' },
+        { text: 'Error: Could not contact chatbot.', sender: 'bot' },
       ]);
-    }, 1000);
+    }
+  };
+
+  // Handle key press events
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent the default action (e.g., adding a newline)
+      sendMessage();
+    }
   };
 
   return (
     <div
-      className={`fixed bottom-4 right-4 flex flex-col items-end z-[999] bg-black ${
+      className={`fixed bottom-4 right-4 flex flex-col items-end z-[999] bg-black border border-gray-200 ${
         !open ? 'border border-red-500 rounded-full ' : ''
       }`}
     >
       {open && (
-        <div className="bg-black shadow-lg rounded-lg w-80 p-4 border border-gray-200">
+        <div className="bg-black shadow-lg rounded-lg w-80 p-4 ">
           <div className="flex justify-between items-center pb-2 border-b">
             <h2 className="text-lg font-semibold">Chatbot</h2>
             <X
@@ -44,7 +64,7 @@ export default function Chatbot() {
                 key={i}
                 className={`p-2 rounded-lg ${
                   msg.sender === 'user'
-                    ? 'bg-transparent text-white self-end'
+                    ? 'bg-blue-500 text-white self-end'
                     : 'bg-white text-black self-start'
                 }`}
               >
@@ -52,11 +72,12 @@ export default function Chatbot() {
               </div>
             ))}
           </div>
-          <div className="flex  border-t pt-2">
-            <input
+          <div className="flex border-t pt-2">
+            <textarea
               className="flex-1 border p-2 rounded-l-lg bg-transparent"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyPress} // Add the key press handler
               placeholder="Type a message..."
             />
             <button
@@ -69,7 +90,7 @@ export default function Chatbot() {
         </div>
       )}
       <button
-        className="rounded-full p-3 shadow-lg"
+        className={`rounded-full p-3 shadow-lg ${open && 'hidden'}`}
         onClick={() => setOpen(!open)}
       >
         <MessageSquare />

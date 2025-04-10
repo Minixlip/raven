@@ -138,7 +138,7 @@ export default function NavbarMenu() {
           className="h-full px-4 border-r border-r-neutral-500 relative hover:bg-neutral-800"
         >
           <FaShoppingBag />
-          <span className="p-1 bg-white text-black fixed top-0 right-0 text-sm font-bold">
+          <span className="p-1 bg-white text-black absolute top-0 right-0 text-sm font-bold">
             {cart.length}
           </span>
         </button>

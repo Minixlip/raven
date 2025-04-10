@@ -105,7 +105,7 @@ export default function HomeCardSection2() {
   return (
     <div
       ref={parentRef}
-      className="min-h-[20vh] flex flex-col md:flex-row relative overflow-hidden mt-2"
+      className="min-h-[20vh] flex flex-col md:flex-row relative overflow-hidden mt-2 -z-50"
     >
       <motion.div
         ref={chickenRef}
