@@ -114,21 +114,6 @@ Assumes a backend (e.g., Express.js) running on `http://localhost:4000`
 
 ---
 
-## 🧱 Data Models (Frontend Assumptions)
-
-### Product Model
-
-```ts
-interface Product {
-  _id: string;
-  name: string;
-  price: number;
-  image: string;
-  description?: string;
-  category?: string;
-}
-```
-
 ---
 
 ## ⚙️ Additional Configuration
