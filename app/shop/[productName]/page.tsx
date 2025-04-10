@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import ItemDisplay from '@/app/components/shop/ItemDisplay';
+import ItemDisplay from '../../components/shop/ItemDisplay';
 
 export default function ProductPage() {
   const { productName } = useParams(); // Get product name from URL
