@@ -2,16 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-const categories = [
-  'ALL',
-  'TOPS',
-  'BOTTOMS',
-  'OUTERWEAR',
-  'ACCESSORIES',
-  'NEW ARRIVALS',
-  'BEST SELLERS',
-  'SALE',
-];
+const categories = ['ALL', 'TOPS', 'BOTTOMS', 'OUTERWEAR', 'ACCESSORIES'];
 
 export default function CategoryNavbar() {
   const router = useRouter();
