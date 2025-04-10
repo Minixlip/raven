@@ -9,7 +9,7 @@ export default function JournalCard(props: any) {
   return (
     <div
       className="flex-1 border border-neutral-500 flex flex-col cursor-pointer"
-      onClick={() => (location.href = `/journal`)}
+      onClick={() => (location.href = `${props.journalCardInfo.link}`)}
       onMouseEnter={() => setPreviewHover(true)}
       onMouseLeave={() => setPreviewHover(false)}
     >

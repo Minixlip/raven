@@ -4,16 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function Footer() {
-  const categories = [
-    'ALL',
-    'TOPS',
-    'BOTTOMS',
-    'OUTERWEAR',
-    'ACCESSORIES',
-    'NEW ARRIVALS',
-    'BEST SELLERS',
-    'SALE',
-  ];
+  const categories = ['ALL', 'TOPS', 'BOTTOMS', 'OUTERWEAR', 'ACCESSORIES'];
 
   const support = [
     'MY ACCOUNT',
@@ -26,15 +17,9 @@ export default function Footer() {
 
   const about = ['ABOUT RAVEN', 'JOURNAL', 'CONTACT'];
 
-  const socialMedia = [
-    'INSTAGRAM',
-    'X / TWITTER',
-    'YOUTUBE',
-    'FACEBOOK',
-    'TWITCH',
-  ];
+  const socialMedia = ['INSTAGRAM', 'X', 'YOUTUBE', 'FACEBOOK', 'TWITCH'];
 
-  const renderLinks = (links: string[]) => (
+  const renderCategoriesLinks = (links: string[]) => (
     <ul className="space-y-2 mt-4 font-semibold">
       {links.map((link) => (
         <li key={link}>
@@ -43,7 +28,69 @@ export default function Footer() {
             transition={{ duration: 0.3 }}
           >
             <Link
-              href={`/${link.toLowerCase().replace(/ /g, '-')}`}
+              href={`/shop?category=${link.toUpperCase().replace(/ /g, '-')}`}
+              className="text-neutral-500"
+            >
+              {link}
+            </Link>
+          </motion.div>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const renderSupportLinks = (links: string[]) => (
+    <ul className="space-y-2 mt-4 font-semibold">
+      {links.map((link) => (
+        <li key={link}>
+          <motion.div
+            whileHover={{ color: '#ffffff' }}
+            transition={{ duration: 0.3 }}
+          >
+            <Link
+              href={link === 'MY ACCOUNT' ? '/profile' : '/contact'}
+              className="text-neutral-500"
+            >
+              {link}
+            </Link>
+          </motion.div>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const renderAboutLinks = (links: string[]) => (
+    <ul className="space-y-2 mt-4 font-semibold">
+      {links.map((link) => (
+        <li key={link}>
+          <motion.div
+            whileHover={{ color: '#ffffff' }}
+            transition={{ duration: 0.3 }}
+          >
+            <Link
+              href={
+                link === 'ABOUT RAVEN' ? '/about' : `/${link.toLowerCase()}`
+              }
+              className="text-neutral-500"
+            >
+              {link}
+            </Link>
+          </motion.div>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const renderSocialLinks = (links: string[]) => (
+    <ul className="space-y-2 mt-4 font-semibold">
+      {links.map((link) => (
+        <li key={link}>
+          <motion.div
+            whileHover={{ color: '#ffffff' }}
+            transition={{ duration: 0.3 }}
+          >
+            <Link
+              href={`https://${link}.com/`}
               className="text-neutral-500"
             >
               {link}
@@ -60,19 +107,19 @@ export default function Footer() {
         <div className="flex justify-between mx-4 my-4 flex-wrap">
           <div className="">
             <span className="font-bold tracking-widest">CATEGORIES</span>
-            {renderLinks(categories)}
+            {renderCategoriesLinks(categories)}
           </div>
           <div className="">
             <span className="font-bold tracking-widest">SUPPORT</span>
-            {renderLinks(support)}
+            {renderSupportLinks(support)}
           </div>
           <div>
             <span className="font-bold tracking-widest">ABOUT</span>
-            {renderLinks(about)}
+            {renderAboutLinks(about)}
           </div>
           <div>
             <span className="font-bold tracking-widest">SOCIAL MEDIA</span>
-            {renderLinks(socialMedia)}
+            {renderSocialLinks(socialMedia)}
           </div>
         </div>
       </div>

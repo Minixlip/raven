@@ -7,18 +7,21 @@ export default function JournalCardDisplay() {
       title: 'MOVING THROUGH CITIES',
       image:
         'https://framerusercontent.com/images/pRSF3ie9u29K42AIkVizUhtPFos.jpg',
+      link: '/journal?journal=moving-through-cities',
     },
     {
       date: '12/6/24',
       title: 'NIGHT SHIFT',
       image:
         'https://framerusercontent.com/images/4YS2erneoVBUDXp66O2uwDvjjaE.jpg',
+      link: '/journal?journal=night-shift',
     },
     {
       date: '12/6/24',
       title: 'THE WEIGHT OF PURPOSE',
       image:
         'https://framerusercontent.com/images/FG2LWwzL6LUQPimvaWtxuUHJg.jpg',
+      link: '/journal?journal=the-weight-of-purpose',
     },
   ];
   return (

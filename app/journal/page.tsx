@@ -142,13 +142,13 @@ Over time, well-designed pieces become extensions of self. The way a jacket mold
           <JournalCard2 journalCardInfo={journal} />
         </div>
         <div className="min-h-screen flex flex-col lg:flex-row">
-          <div className="flex flex-col gap-8 p-2 flex-1 border-r border-neutral-500">
+          <div className="flex flex-col gap-8 p-2 flex-1 border-neutral-500">
             <Link href={'/journal'}>
               Home / Journal /{' '}
               <span className="text-neutral-500">{journal.title}</span>
             </Link>
             <span className="text-4xl font-bold">{journal.journalTitle}</span>
-            <span className="text-2xl font-semibold tracking-widest leading-relaxed">
+            <span className="md:text-2xl font-semibold tracking-widest leading-relaxed">
               {journal.content}
             </span>
           </div>

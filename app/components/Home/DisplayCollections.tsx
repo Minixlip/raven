@@ -20,7 +20,7 @@ export default function DisplayCollections() {
         }}
         onMouseEnter={() => setLeftPreviewHover(true)}
         onMouseLeave={() => setLeftPreviewHover(false)}
-        onClick={() => (location.href = `/collections`)}
+        onClick={() => (location.href = `/journal`)}
       >
         <div className="mx-2 my-2 text-3xl flex gap-2 items-center font-semibold">
           <motion.span

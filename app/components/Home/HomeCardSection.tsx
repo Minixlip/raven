@@ -105,7 +105,7 @@ export default function HomeCardSection2() {
   return (
     <div
       ref={parentRef}
-      className="min-h-[20vh] flex flex-col md:flex-row relative overflow-hidden mt-2 -z-50"
+      className="min-h-[20vh] flex flex-col md:flex-row relative overflow-hidden mt-2  "
     >
       <motion.div
         ref={chickenRef}
@@ -116,16 +116,16 @@ export default function HomeCardSection2() {
           backgroundPosition: 'top',
           y: isMobile ? 0 : smoothTranslateY,
         }}
-        className="flex-1 min-h-[200px] h-[600px] flex flex-col justify-start border-2 border-neutral-500 mt-2"
+        className="flex-1 min-h-[200px] h-[600px] flex flex-col justify-start border-2 border-neutral-500 mt-2 "
       >
         <Link
           href={'/shop'}
-          className="px-4 flex justify-start items-center gap-2 z-[200] md:py-10"
+          className="px-4 flex justify-start items-center gap-2  md:py-10"
         >
           <span className="text-2xl font-bold">SHOP NOW</span>
           <IoIosArrowDropright className="text-3xl" />
         </Link>
-        <span className=" text-3xl lg:text-8xl font-bold px-4">
+        <span className=" text-3xl lg:text-8xl font-bold px-4 ">
           NEW ARRIVALS
         </span>
       </motion.div>

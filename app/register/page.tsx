@@ -13,6 +13,7 @@ export default function Register() {
   });
 
   const [error, setError] = useState(null);
+  const [checkbox, setCheckbox] = useState(false);
   const router = useRouter();
   const { user } = useAuthContext(); // Get the user from AuthContext
 
@@ -42,6 +43,10 @@ export default function Register() {
         throw new Error('Please fill out your details');
       }
 
+      if (!checkbox) {
+        throw new Error('Please agree to Terms & Conditions');
+      }
+
       const res = await fetch('http://localhost:4000/api/users/Register', {
         method: 'POST',
         headers: {
@@ -63,7 +68,7 @@ export default function Register() {
       router.push('/'); // Redirect to home after successful registration
     } catch (err: any) {
       setError(err.message);
-      alert(error);
+      alert(err.message);
     }
   };
 
@@ -149,6 +154,8 @@ export default function Register() {
             <input
               type="checkbox"
               className="my-4"
+              required
+              onChange={() => setCheckbox((prev) => !prev)}
             />
             <p className="line">
               <span className="font-bold">Terms & Conditions</span> <br /> By
@@ -182,6 +189,7 @@ export default function Register() {
               </span>
             </p>
           </div>
+          {error && <div className="text-red-500 mt-4">{error}</div>}
         </div>
       </div>
     </div>

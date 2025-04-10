@@ -15,7 +15,6 @@ export default function Profile() {
   const [orders, setOrders] = useState(null);
   const [error, setError] = useState(null);
 
-  // ✅ Parse localStorage only once on first render
   useEffect(() => {
     const userFromStorage = JSON.parse(localStorage.getItem('user'));
     setStoredUser(userFromStorage);
@@ -25,7 +24,7 @@ export default function Profile() {
     const userFromStorage = JSON.parse(localStorage.getItem('user'));
     if (userFromStorage) {
       setStoredUser(userFromStorage);
-      setIsLoading(false); // Only done when we know if there's a user
+      setIsLoading(false);
     } else if (!user) {
       router.push('/login');
     } else {
@@ -33,7 +32,6 @@ export default function Profile() {
     }
   }, [user, router]);
 
-  // ✅ Fetch orders only once after loading
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -72,7 +70,7 @@ export default function Profile() {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className=" flex flex-col min-h-screen justify-evenly ">
+    <div className=" flex flex-col min-h-screen ">
       <div className="flex flex-col md:flex-row gap-4 justify-between font-bold  p-4 bg-black border-b border-neutral-500">
         <h2 className="text-6xl select-none">
           Welcome, {user?.firstName || storedUser?.firstName}
@@ -122,7 +120,7 @@ export default function Profile() {
             ))}
           </div>
         ) : (
-          <p>Loading orders...</p>
+          <p></p>
         )}
       </div>
     </div>
